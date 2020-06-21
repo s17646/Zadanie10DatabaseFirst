@@ -12,5 +12,6 @@ namespace Zadanie10.Services
         Student GetStudent(string indexNumber);
         Student UpdateStudent(StudentDto studentDto);
         void DeleteStudent(string indexNumber);
+        IEnumerable<Student> GetStudents();
     }
 }

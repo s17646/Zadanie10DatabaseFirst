@@ -28,7 +28,17 @@ namespace Zadanie10.Services
 
         public Student GetStudent(string indexNumber)
         {
-            return (Student)_dbcontext.Student.Where(st => st.IndexNumber == indexNumber);
+            var student = _dbcontext.Student.Where(st => st.IndexNumber == indexNumber);
+            if (student == null)
+            {
+                throw new Exception("Student not found");
+            }
+            return null;
+        }
+
+        public IEnumerable<Student> GetStudents()
+        {
+            return _dbcontext.Student.ToList();
         }
 
         public Student UpdateStudent(StudentDto studentDto)
