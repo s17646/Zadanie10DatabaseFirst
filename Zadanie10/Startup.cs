@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Zadanie10.Models;
+using Zadanie10.Services;
 
 namespace Zadanie10
 {
@@ -27,6 +28,7 @@ namespace Zadanie10
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IStudentsService, StudentsService>();
             services.AddDbContext<StudentsDbContext>(opt => { opt.UseSqlServer("Data Source=db-mssql;Initial Catalog=s17646;Integrated Security=True; MultipleActiveResultSets=true"); });
             services.AddControllers();
         }
