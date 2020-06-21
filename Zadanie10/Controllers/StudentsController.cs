@@ -68,5 +68,36 @@ namespace Zadanie10.Controllers
             return Ok("Student deleted");
         }
 
+        [HttpPost]
+        public IActionResult EnrollStudent(EnrollStudentDtoRequest request)
+        {
+            try
+            {
+                _service.EnrollStudent(request);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok("Student enrolled");
+        }
+
+
+        [HttpPost]
+        [Route("promotions")]
+        public IActionResult PromoteStudents(int semester, string studies) 
+        {
+            try
+            {
+                _service.PromoteStudents(semester, studies);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok("All students promoted!");
+        }
+
     }
 }

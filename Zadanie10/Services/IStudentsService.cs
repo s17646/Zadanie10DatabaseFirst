@@ -13,5 +13,7 @@ namespace Zadanie10.Services
         Student UpdateStudent(StudentDto studentDto);
         void DeleteStudent(string indexNumber);
         IEnumerable<Student> GetStudents();
+        void EnrollStudent(EnrollStudentDtoRequest request);
+        void PromoteStudents(int semester, string studies);
     }
 }
