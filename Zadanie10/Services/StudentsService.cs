@@ -17,17 +17,42 @@ namespace Zadanie10.Services
 
         public void DeleteStudent(string indexNumber)
         {
-            throw new NotImplementedException();
+            var student = (Student)_dbcontext.Student.Where(st => st.IndexNumber == indexNumber);
+            if (student == null)
+            {
+                throw new Exception("Student doesn't exist");
+            }
+
+            _dbcontext.Remove(student);
         }
 
         public Student GetStudent(string indexNumber)
         {
-            throw new NotImplementedException();
+            return (Student)_dbcontext.Student.Where(st => st.IndexNumber == indexNumber);
         }
 
         public Student UpdateStudent(StudentDto studentDto)
         {
-            throw new NotImplementedException();
+            var student = (Student)_dbcontext.Student.Where(st => st.IndexNumber == studentDto.IndexNumber);
+            if (student == null)
+            {
+                throw new Exception("Student doesn't exist");
+            }
+
+            if (!String.IsNullOrEmpty(studentDto.FirstName))
+            {
+                student.FirstName = studentDto.FirstName;
+            }
+            if (!String.IsNullOrEmpty(studentDto.LastName))
+            {
+                student.LastName = studentDto.LastName;
+            }
+            if (studentDto.BirthDate != null)
+            {
+                student.BirthDate = studentDto.BirthDate;
+            }
+            _dbcontext.SaveChanges();
+            return student;
         }
     }
 }
